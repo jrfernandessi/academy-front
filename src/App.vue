@@ -1,17 +1,27 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>Nome: </h1>
+    <input v-model="student.name" />
+    <button @click="saveData()">Salvar</button>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  data(){
+    return {
+      student:{
+        name: null
+      }
+    }
+  },
+  methods: {
+    saveData(){
+      this.$http.post('students', this.student)
+      console.log("salvar "+this.student.name)
+    }
   }
 }
 </script>
